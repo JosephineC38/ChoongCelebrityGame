@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * @author cody.henrichsen
  * @version 2.9 18/09/2018 Adjusted the listener functionality.
  */
-public class CelebrityPanel extends JPanel {
+public class CelebrityPanel extends JPanel implements ActionListener {
   
   /**
    * The button pressed when making a guess.
@@ -205,6 +205,24 @@ public class CelebrityPanel extends JPanel {
    * to provide the same functionality.
    */
   private void updateScreen() {
+    String guessText = guessField.getText();
+    clueArea.append("\nYou guessed: " + guessText + "\n");
+    if(controller.processGuess(guessText)) {
+      System.out.println("CORRECT");
+    } else {
+      System.out.println("INCORRECT");
+    }
 
   }
+
+  public void actionPerformed(ActionEvent ae) {
+    Object source = ae.getSource();
+    JButton button = (JButton) source;
+    String buttonText = button.getText();
+    if(buttonText.equals("Submit guess")) {
+      updateScreen();
+    }
+  }
+
+
 }
