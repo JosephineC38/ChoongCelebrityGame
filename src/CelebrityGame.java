@@ -40,8 +40,8 @@ public class CelebrityGame {
 	 *         spaces.
 	 */
 	public boolean processGuess(String guess) {
-		String str = guess.trim();
-		if(guess.equals(gameCelebrity.getAnswer())) {
+		String str = guess.trim().toLowerCase();
+		if(str.equals(gameCelebrity.getAnswer().toLowerCase())) {
 			celebGameList.remove(0);
 			if(celebGameList.size() > 0) {
 				gameCelebrity = celebGameList.get(0);
@@ -51,6 +51,8 @@ public class CelebrityGame {
 			return true;
 		}
 		return false;
+
+
 	}
 
 	/**
